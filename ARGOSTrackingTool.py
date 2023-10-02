@@ -21,6 +21,10 @@ line_list = file_object.readlines()
 #Close the file. Once the contents of the file have been read into the memory done in the previous two lines of code, there's no need to have the file open.
 file_object.close()
 
+#Initialize dictionaries
+date_dict = {}
+location_dict = {}
+
 #For every iteration (line in the Sara.txt data file) it will update the variable lineString. 
 for lineString in line_list:
     #Check if line is a data line (vs. just metadata type text found at the beginning of the Sara.txt doc). If the line starts with # or u, skip over it (continue).  
@@ -37,5 +41,9 @@ for lineString in line_list:
     obs_lat = lineData[6]
     obs_lon = lineData[7]
 
+    #Add items to dictionaries. We use record_id because it's a unique value for each line of data
+    date_dict[record_id] = obs_date
+    location_dict[record_id] = (obs_lat, obs_lon)
+    
     #Print the location of sara
-    print(f"Record {record_id} indicates Sara was seen at lat:{obs_lat},lon:{obs_lon} on {obs_date}")
+    #print(f"Record {record_id} indicates Sara was seen at lat:{obs_lat},lon:{obs_lon} on {obs_date}")
